@@ -33,18 +33,22 @@ function getRank() {
 	}
 }
 function getSuffix(i) {
-    var j = i % 10,
-        k = i % 100;
-    if (j == 1 && k != 11) {
+    if (i.substr(-2).substr(0,1) == "1")
+{
+	return i + "th";
+}
+    var digit = i.substr(-1);
+    if (digit == "1") {
         return i + "st";
-    }
-    if (j == 2 && k != 12) {
+    } else if (digit == "2") {
         return i + "nd";
-    }
-    if (j == 3 && k != 13) {
+    }else if (digit == "3") {
         return i + "rd";
-    }
-    return i + "th";
+    } else
+{
+	return i + "th";
+}
+    return i;
 }
 (function() {
 
@@ -53,7 +57,6 @@ function getSuffix(i) {
 	*/
 	$.bind('command', function(event) {
 
-		$.say(siid);
 		var sender = event.getSender(),
 		args = event.getArgs(),
 		action = args[0];
