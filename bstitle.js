@@ -5,22 +5,23 @@ function getRank() {
 		var HttpRequest = Packages.com.gmt2001.HttpRequest,
 			HashMap = Packages.java.util.HashMap,
 			header = new HashMap(1),
+			JSONObject = Packages.org.json.JSONObject,
 			request;
 
 		header.put('Content-Type', 'application/json-rpc');
 	
 	 	 request = HttpRequest.getData(
 	                    HttpRequest.RequestType.GET,
-	                    'https://scoresaber.com/u/76561198800357802',
+	                    'https://scoresaber.com/api/player/76561198800357802/full',
 	                    "",
                 	    header
         	);
 
 		if (request.success)
 		{
-			var rank = request.content.substring(
-				request.content.indexOf("#") +1 );  // delete before the rank
-			rank = rank.substring(0,rank.indexOf("\n")); // delete after the rank
+			var rank = new JSONObject(request.content)
+				.getNumber('rank');
+			
 		} 
 		var ntitle = title.replace(/\$/g,getSuffix(rank));
 		if ($.getStatus($.channelName) != ntitle){
@@ -33,22 +34,18 @@ function getRank() {
 	}
 }
 function getSuffix(i) {
-    if (i.substr(-2).substr(0,1) == "1")
-{
-	return i + "th";
-}
-    var digit = i.substr(-1);
-    if (digit == "1") {
+    var j = i % 10,
+    k = i % 100;
+    if (j == 1 && k != 11) {
         return i + "st";
-    } else if (digit == "2") {
+    }
+    if (j == 2 && k != 12) {
         return i + "nd";
-    }else if (digit == "3") {
+    }
+    if (j == 3 && k != 13) {
         return i + "rd";
-    } else
-{
-	return i + "th";
-}
-    return i;
+    }
+    return i + "th";
 }
 (function() {
 
