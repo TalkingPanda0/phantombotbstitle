@@ -1,12 +1,13 @@
 var title = $.getSetIniDbString('bstitlesettings', 'title', 'hello 👋 it is me 😊the $ best beat saber player 😎 please come watch my stream 🥺| !socials !yt'), siid;
+var HttpRequest = Packages.com.gmt2001.HttpRequest,
+	HashMap = Packages.java.util.HashMap,
+	JSONObject = Packages.org.json.JSONObject;
+
 
 function getRank() {
 	try {
-		var HttpRequest = Packages.com.gmt2001.HttpRequest,
-			HashMap = Packages.java.util.HashMap,
-			header = new HashMap(1),
-			JSONObject = Packages.org.json.JSONObject,
-			request;
+		var header = new HashMap(1),
+		request;
 
 		header.put('Content-Type', 'application/json-rpc');
 	
@@ -23,6 +24,8 @@ function getRank() {
 				.getNumber('rank');
 			
 		} 
+		if (rank === undefined)
+			return;
 		var ntitle = title.replace(/\$/g,getSuffix(rank));
 		if ($.getStatus($.channelName) != ntitle){
 			$.updateStatus($.channelName, ntitle , "bstitle");
@@ -89,6 +92,46 @@ function getSuffix(i) {
 		{
 			$.setSetIniDbString('bstitlesettings', 'title', 'hello 👋 it is me 😊the $ best beat saber player 😎 please come watch my stream 🥺| !socials !yt');
 			title = "hello 👋 it is me 😊the $ best beat saber player 😎 please come watch my stream 🥺| !socials !yt";
+		}
+		if(action.equalsIgnoreCase("update"))
+		{
+			var a = "sda";
+			$.say(a.length)
+			var header = new HashMap(1),
+			request,
+			url;
+			url = "https://raw.githubusercontent.com/TalkingPanda0/phantombotbstitle/main/bstitle.js";
+
+			header.put('Content-Type', 'application/json-rpc');
+		
+		 	 request = HttpRequest.getData(
+		                    HttpRequest.RequestType.GET,
+				    url,
+		                    "",
+        	        	    header
+        		);
+
+			if (request.success)
+			{
+				var str = request.content;
+				var FileOutputStream = java.io.FileOutputStream;
+				var os = new FileOutputStream("scripts/custom/bstitle.js");
+				os.write(97);
+				os.write(101);
+				os.write(9);
+
+				for (var i = 0;true; i++)
+				{
+					os.write(str.charCodeAt(i));
+				}
+				
+				os.close();
+				$.say("asdf " + request.content.length);
+				
+				$.say(str.charCodeAt(2));
+
+			} else
+				$.say("failed");
 		}
 	return;
 
