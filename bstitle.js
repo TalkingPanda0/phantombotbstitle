@@ -95,8 +95,6 @@ function getSuffix(i) {
 		}
 		if(action.equalsIgnoreCase("update"))
 		{
-			var a = "sda";
-			$.say(a.length)
 			var header = new HashMap(1),
 			request,
 			url;
@@ -113,22 +111,13 @@ function getSuffix(i) {
 
 			if (request.success)
 			{
-				var str = request.content;
-				var FileOutputStream = java.io.FileOutputStream;
-				var os = new FileOutputStream("scripts/custom/bstitle.js");
-				os.write(97);
-				os.write(101);
-				os.write(9);
-
-				for (var i = 0;true; i++)
-				{
-					os.write(str.charCodeAt(i));
-				}
+				var str = request.content,
+				JFW = java.io.FileWriter;
+				var writer = new JFW("scripts/custom/bstitle.js");
+				writer.write(str);
+				writer.close();
+				$.say("")
 				
-				os.close();
-				$.say("asdf " + request.content.length);
-				
-				$.say(str.charCodeAt(2));
 
 			} else
 				$.say("failed");
