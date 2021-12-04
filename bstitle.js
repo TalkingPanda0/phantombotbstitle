@@ -116,7 +116,7 @@ function getSuffix(i) {
 				var writer = new JFW("scripts/custom/bstitle.js");
 				writer.write(str);
 				writer.close();
-				$.say("")
+				$.say("Updated!")
 				
 
 			} else
