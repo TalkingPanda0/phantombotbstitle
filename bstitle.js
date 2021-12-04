@@ -85,13 +85,13 @@ function getSuffix(i) {
 		}
 		if(action.equalsIgnoreCase("title")){
 			title=args.slice(1).join(' ');
-			$.setIniDbString('bstitlesettings', 'status', title);
+			$.setIniDbString('bstitlesettings', 'title', title);
 			$.say($.whisperPrefix(sender) + "Title Changed to: \"" + title+ "\".");
 
 		}
 		if(action.equalsIgnoreCase("reset"))
 		{
-			$.setSetIniDbString('bstitlesettings', 'title', 'hello 👋 it is me 😊the $ best beat saber player 😎 please come watch my stream 🥺| !socials !yt');
+			$.setIniDbString('bstitlesettings', 'title', 'hello 👋 it is me 😊the $ best beat saber player 😎 please come watch my stream 🥺| !socials !yt');
 			title = "hello 👋 it is me 😊the $ best beat saber player 😎 please come watch my stream 🥺| !socials !yt";
 		}
 		if(action.equalsIgnoreCase("update"))
