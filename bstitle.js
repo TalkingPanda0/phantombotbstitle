@@ -26,7 +26,8 @@ function getRank() {
 		} 
 		if (rank === undefined)
 			return;
-		var ntitle = title.replace(/\$/g,getSuffix(rank));
+		csrank = getSuffix(rank).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		var ntitle = title.replace(/\$/g,csrank);
 		if ($.getStatus($.channelName) != ntitle){
 			$.updateStatus($.channelName, ntitle , "bstitle");
 		}
