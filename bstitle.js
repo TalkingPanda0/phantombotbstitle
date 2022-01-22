@@ -72,7 +72,7 @@ function getSuffix(i) {
 				$.say("Bstitle isn't running");
 			}
 		}
-		if(action.equalsIgnoreCase("start"))
+		else if(action.equalsIgnoreCase("start"))
 		{
 			if(!siid)
 			{
@@ -83,18 +83,18 @@ function getSuffix(i) {
 				$.say("Bstitle has already started");
 			}
 		}
-		if(action.equalsIgnoreCase("title")){
+		else if(action.equalsIgnoreCase("title")){
 			title=args.slice(1).join(' ');
 			$.setIniDbString('bstitlesettings', 'title', title);
 			$.say($.whisperPrefix(sender) + "Title Changed to: \"" + title+ "\".");
 
 		}
-		if(action.equalsIgnoreCase("reset"))
+		else if(action.equalsIgnoreCase("reset"))
 		{
 			$.setIniDbString('bstitlesettings', 'title', 'hello 👋 it is me 😊the $ best beat saber player 😎 please come watch my stream 🥺| !socials !yt');
 			title = "hello 👋 it is me 😊the $ best beat saber player 😎 please come watch my stream 🥺| !socials !yt";
 		}
-		if(action.equalsIgnoreCase("update"))
+		else if(action.equalsIgnoreCase("update"))
 		{
 			var header = new HashMap(1),
 			request,
