@@ -1,4 +1,4 @@
-var title = $.getSetIniDbString('bstitlesettings', 'title', 'hello 👋 it is me 😊the $ best beat saber player 😎 please come watch my stream 🥺| !socials !yt'), siid;
+var title = $.getSetIniDbString('bstitlesettings', 'title', 'hello 👋 it is me 😊 the $ best beat saber player 😎 please come watch my stream 🥺| !socials !yt'), siid;
 var HttpRequest = Packages.com.gmt2001.HttpRequest,
 	HashMap = Packages.java.util.HashMap,
 	JSONObject = Packages.org.json.JSONObject;
@@ -30,7 +30,7 @@ function getRank() {
 		var ntitle = title.replace(/\$/g,csrank);
 		if ($.getStatus($.channelName) != ntitle){
 			$.updateStatus($.channelName, ntitle , "bstitle",1);
-			$.say("SweetbabooO_o is now" + csrank + "best player");
+			$.say("SweetbabooO_o is now the " + csrank + "best player");
 		}
 	}
 	catch(error)
@@ -92,8 +92,8 @@ function getSuffix(i) {
 		}
 		else if(action.equalsIgnoreCase("reset"))
 		{
-			$.setIniDbString('bstitlesettings', 'title', 'hello 👋 it is me 😊the $ best beat saber player 😎 please come watch my stream 🥺| !socials !yt');
-			title = "hello 👋 it is me 😊the $ best beat saber player 😎 please come watch my stream 🥺| !socials !yt";
+			$.setIniDbString('bstitlesettings', 'title', 'hello 👋 it is me 😊 the $ best beat saber player 😎 please come watch my stream 🥺| !socials !yt');
+			title = "hello 👋 it is me 😊 the $ best beat saber player 😎 please come watch my stream 🥺| !socials !yt";
 		}
 		else if(action.equalsIgnoreCase("update"))
 		{
