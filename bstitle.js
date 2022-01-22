@@ -29,7 +29,7 @@ function getRank() {
 		csrank = getSuffix(rank).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		var ntitle = title.replace(/\$/g,csrank);
 		if ($.getStatus($.channelName) != ntitle){
-			$.updateStatus($.channelName, ntitle , "bstitle");
+			$.updateStatus($.channelName, ntitle , "bstitle",1);
 		}
 	}
 	catch(error)
