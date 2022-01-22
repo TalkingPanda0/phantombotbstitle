@@ -30,6 +30,7 @@ function getRank() {
 		var ntitle = title.replace(/\$/g,csrank);
 		if ($.getStatus($.channelName) != ntitle){
 			$.updateStatus($.channelName, ntitle , "bstitle",1);
+			$.say("SweetbabooO_o is now" + csrank + "best player");
 		}
 	}
 	catch(error)
