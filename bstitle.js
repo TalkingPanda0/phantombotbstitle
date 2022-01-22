@@ -122,8 +122,7 @@ function getSuffix(i) {
 
 			} else
 				$.say("failed");
-		} else
-			$.say("!bstitle commands are start/stop/title/reset/update");
+		}
 	return;
 
 });
