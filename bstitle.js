@@ -13,7 +13,7 @@ function getRank() {
 	
 	 	 request = HttpRequest.getData(
 	                    HttpRequest.RequestType.GET,
-	                    'https://scoresaber.com/api/player/76561198800357802/full',
+	                    'https://scoresaber.com/api/player/76561198800357802/basic',
 	                    "",
                 	    header
         	);
