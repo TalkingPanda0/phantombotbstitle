@@ -3,7 +3,6 @@ var HttpRequest = Packages.com.gmt2001.HttpRequest,
 	HashMap = Packages.java.util.HashMap,
 	JSONObject = Packages.org.json.JSONObject;
 
-
 function getRank() {
 	try {
 		var header = new HashMap(1),
@@ -20,10 +19,23 @@ function getRank() {
 
 		if (request.success)
 		{
-			var rank = new JSONObject(request.content)
+			return rank = new JSONObject(request.content)
 				.getNumber('rank');
 			
 		} 
+
+	} catch(error)
+	{
+		$.say("error:" + error);
+	}
+
+}
+
+
+function setTitle() {
+	try {	
+		rank = getRank();
+	 
 		if (rank === undefined)
 			return;
 		csrank = getSuffix(rank).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -35,7 +47,7 @@ function getRank() {
 	}
 	catch(error)
 	{
-		$.say("Amazing phantombot module™ made by the amazing @TalkingPanda has failed.(it's probably nothing) if this continues contact @TalkingPanda error:" + error);
+		$.say("error:" + error);
 	}
 }
 function getSuffix(i) {
@@ -77,12 +89,16 @@ function getSuffix(i) {
 		{
 			if(!siid)
 			{
-				siid = setInterval(getRank, 1000);
+				siid = setInterval(setTitle, 1000);
 				$.say("Bstitle started");
 			} else
 			{
 				$.say("Bstitle has already started");
 			}
+		} else if(action.equalsIgnoreCase("getrank")){
+			$.say($.whisperPrefix(sender) + "Sweetbaboo is the" + getSuffix(getRank()).replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "best beatsaber player");
+ )
+			
 		}
 		else if(action.equalsIgnoreCase("title")){
 			title=args.slice(1).join(' ');
