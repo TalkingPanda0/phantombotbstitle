@@ -3,7 +3,6 @@ var HttpRequest = Packages.com.gmt2001.HttpRequest,
 	HashMap = Packages.java.util.HashMap,
 	JSONObject = Packages.org.json.JSONObject;
 
-
 function getRank() {
 	try {
 		var header = new HashMap(1),
@@ -13,7 +12,7 @@ function getRank() {
 	
 	 	 request = HttpRequest.getData(
 	                    HttpRequest.RequestType.GET,
-	                    'https://scoresaber.com/api/player/76561198800357802/basic',
+	                    'https://api.beatleader.xyz/player/76561198800357802',
 	                    "",
                 	    header
         	);
@@ -24,18 +23,24 @@ function getRank() {
 				.getNumber('rank');
 			
 		} 
-		if (rank === undefined)
-			return;
-		csrank = getSuffix(rank).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		var ntitle = title.replace(/\$/g,csrank);
-		if ($.getStatus($.channelName) != ntitle){
-			$.updateStatus($.channelName, ntitle , "bstitle",1);
-			$.say("SweetbabooO_o is now the " + csrank + " best player");
-		}
+		return rank;
 	}
 	catch(error)
 	{
-		$.say("Amazing phantombot module™ made by the amazing @TalkingPanda has failed.(it's probably nothing) if this continues contact @TalkingPanda error:" + error);
+		$.say("bstitle error:" + error);
+	}
+}
+function setTitle()
+{
+	var rank = getRank();
+	if (rank === undefined)
+		return;
+	rank = getSuffix(rank);
+	csrank = getSuffix(rank).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	var ntitle = title.replace(/\$/g,csrank);
+	if ($.getStatus($.channelName) != ntitle){
+		$.updateStatus($.channelName, ntitle , "bstitle",1);
+		$.say("SweetbabooO_o is now the " + csrank + " best player");
 	}
 }
 function getSuffix(i) {
@@ -89,6 +94,14 @@ function getSuffix(i) {
 			$.setIniDbString('bstitlesettings', 'title', title);
 			$.say($.whisperPrefix(sender) + "Title Changed to: \"" + title+ "\".");
 
+		} else if(action.equalsIgnoreCase("getrank"))
+		{
+			var rank = getRank();
+			if (rank === undefined)
+				return;
+			csrank = getSuffix(rank).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+			$.say("SweetbabooO_o is currently the " + csrank + " best beatsaber player");
 		}
 		else if(action.equalsIgnoreCase("reset"))
 		{
