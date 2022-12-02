@@ -2,6 +2,7 @@ var title = $.getSetIniDbString('bstitlesettings', 'title', 'hello 👋 it is me
 var HttpRequest = Packages.com.gmt2001.HttpRequest,
 	HashMap = Packages.java.util.HashMap,
 	JSONObject = Packages.org.json.JSONObject;
+var isTitleChange = 0;
 
 function getRank() {
 	try {
@@ -32,16 +33,25 @@ function getRank() {
 }
 function setTitle()
 {
+	
+	if(isTitleChange)
+		return;
+	
+	isTitleChange = 1;
 	var rank = getRank();
 	if (rank === undefined)
+	{
+		isTitleChange = 0;
 		return;
-	rank = getSuffix(rank);
+	}
+	
 	csrank = getSuffix(rank).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	var ntitle = title.replace(/\$/g,csrank);
 	if ($.getStatus($.channelName) != ntitle){
 		$.updateStatus($.channelName, ntitle , "bstitle",1);
 		$.say("SweetbabooO_o is now the " + csrank + " best player");
 	}
+	isTitleChange = 0;
 }
 function getSuffix(i) {
     var j = i % 10,
@@ -82,7 +92,7 @@ function getSuffix(i) {
 		{
 			if(!siid)
 			{
-				siid = setInterval(getRank, 1000);
+				siid = setInterval(setTitle, 1000);
 				$.say("Bstitle started");
 			} else
 			{
@@ -137,7 +147,7 @@ function getSuffix(i) {
 			} else
 				$.say("failed");
 		} else
-			$.say("!bstitle commands are start/stop/title/reset/update");
+			$.say("!bstitle commands are start/stop/title/reset/update/getrank");
 	return;
 
 });
